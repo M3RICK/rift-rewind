@@ -1,5 +1,4 @@
 name: Sync to Portfolio Repos
-
 on:
   push:
     branches:
@@ -8,7 +7,6 @@ on:
 jobs:
   sync:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -17,10 +15,10 @@ jobs:
 
       - name: Push to cracked portfolio
         run: |
-          git remote add cracked-repo https://CrackedOnTiti:${{ secrets.CRACKED_PAT }}@github.com/CrackedOnTiti/rift-rewind.git
+          git remote add cracked-repo https://x-access-token:${{ secrets.CRACKED_PAT }}@github.com/CrackedOnTiti/rift-rewind.git
           git push cracked-repo ${{ github.ref }} --force
 
-      - name: Push to M3RICK's portfolio
-        run: |
-          git remote add M3RICK-repo https://M3RICK:${{ secrets.M3RICK_PAT }}@github.com/M3RICK/rift-rewind.git
-          git push M3RICK-repo ${{ github.ref }} --force
+      # - name: Push to M3RICK's portfolio
+      #   run: |
+      #     git remote add M3RICK-repo https://x-access-token:${{ secrets.M3RICK_PAT }}@github.com/M3RICK/rift-rewind.git
+      #     git push M3RICK-repo ${{ github.ref }} --force
