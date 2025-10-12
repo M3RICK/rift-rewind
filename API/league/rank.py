@@ -1,21 +1,8 @@
-from ..base import BaseAPI
+from ..Core import Core
 
 
-class Rank(BaseAPI):
-    """Handles League Rank/League API calls"""
-
-    def get_rank_info(self, summoner_id, platform="euw1"):
-        """
-        Get rank information for a summoner
-
-        Args:
-            summoner_id: Encrypted summoner ID (from get_summoner_infos)
-            platform: Platform region (na1, euw1, kr, etc.)
-
-        Returns:
-            List of league entries (can have multiple queues - ranked solo, flex, etc.)
-        """
-        base_url = self.PLATFORM_URLS[platform]
-        url = f"{base_url}/lol/league/v4/entries/by-summoner/{summoner_id}"
-
+class Rank(Core):
+    def get_rank_info(self, identifier, platform="euw1", by_puuid=True):
+        endpoint = "by-puuid" if by_puuid else "by-summoner"
+        url = self._build_server_url(platform, f"/lol/league/v4/entries/{endpoint}/{identifier}")
         return self._make_request(url)
