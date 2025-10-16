@@ -34,7 +34,7 @@ class Player:
             self.game_name, self.tag_line, self.region
         )
         if not self.puuid:
-            print("❌ Failed to get PUUID")
+            print("Failed to get PUUID")
             return False
 
         self.summoner_info = self._summoner_api.get_summoner_infos(
@@ -47,7 +47,7 @@ class Player:
             self.puuid, self.platform, count=5
         )
 
-        print(f"✓ Profile loaded")
+        print(f"Profile loaded")
         return True
 
     def load_year_matches(self, year=2024):
